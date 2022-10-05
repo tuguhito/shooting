@@ -3,13 +3,13 @@
 
 AbstractScene* SceneManager::Update()
 {
-	AbstractScene* p = m_Scene->Update();
-	if (p!=m_Scene)
+	AbstractScene* nextScene = m_Scene->Update();
+	if (nextScene!=m_Scene)
 	{
 		delete m_Scene;
-		m_Scene = p;
+		m_Scene = nextScene;
 	}
-	return p;
+	return nextScene;
 }
 
 void SceneManager::Draw() const

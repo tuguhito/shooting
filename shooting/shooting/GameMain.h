@@ -5,6 +5,10 @@ class GameMain : public AbstractScene
 private:
 
 public:
+	GameMain()
+	{
+
+	}
 
 	virtual ~GameMain() {};
 	virtual AbstractScene* Update() override;
