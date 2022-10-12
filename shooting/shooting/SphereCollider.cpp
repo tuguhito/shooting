@@ -11,13 +11,11 @@ bool SphereCollider::HitSphere(SphereCollider s)
 	float y = this->location.y - location.y;
 
 	//絶対値に変換
-	x = x < 0 ? -x : x;
-	y = y < 0 ? -y : y;
+	x = fabsf(x);
+	y = fabsf(y);
 
 	//ベクトルの大きさを取得
-	float x2 = x * x;
-	float y2 = y * y;
-	float xy = x2 + y2;
+	float xy = x * x + y * y;
 	double vectorSize = sqrt(xy);
 
 	//

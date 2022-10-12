@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -151,14 +151,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BulletsBase.cpp" />
+    <ClCompile Include="CharaBase.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
+    <ClInclude Include="BulletsBase.h" />
+    <ClInclude Include="CharaBase.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="ItemBase.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SphereCollider.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
