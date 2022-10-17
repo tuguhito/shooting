@@ -1,8 +1,12 @@
 #include"DxLib.h"
 #include"SceneManager.h"
+#include"KeyManager.h"
 
 AbstractScene* SceneManager::Update()
 {
+
+	KeyManager::Update();
+
 	AbstractScene* nextScene = m_Scene->Update();
 	if (nextScene!=m_Scene)
 	{
