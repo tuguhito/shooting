@@ -39,8 +39,7 @@ public:
 
 	static bool OnRelease(int inputKey)
 	{
-		int keyFlg = (oldKey[inputKey]==1&&nowKey[inputKey]==0);
-		bool ret = (&inputKey);
+		bool ret = (oldKey[inputKey] == 1 && nowKey[inputKey] == 0);
 		return ret;
 	}
 

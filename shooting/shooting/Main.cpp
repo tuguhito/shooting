@@ -25,7 +25,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
         ClearDrawScreen();
 
 
-        if (KeyManager::OnClick(KEY_INPUT_RETURN))
+        if (KeyManager::OnRelease(KEY_INPUT_RETURN))
         {
             DrawFormatString(100, 100, 0xffffff, "aaa");
         }
