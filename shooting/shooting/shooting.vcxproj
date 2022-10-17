@@ -155,7 +155,9 @@
     <ClCompile Include="CharaBase.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
   </ItemGroup>
@@ -166,7 +168,8 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="ItemBase.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SphereCollider.h" />
   </ItemGroup>
