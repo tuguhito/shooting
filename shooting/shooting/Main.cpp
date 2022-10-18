@@ -1,7 +1,7 @@
 #include"DxLib.h"
 #include"SceneManager.h"
 #include"GameMain.h"
-#include"KeyManager.h"
+
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     LPSTR lpCmdLine, int nCmdShow) {
@@ -25,10 +25,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
         ClearDrawScreen();
 
 
-        if (KeyManager::OnRelease(KEY_INPUT_RETURN))
-        {
-            DrawFormatString(100, 100, 0xffffff, "aaa");
-        }
+      
 
         sceneMng.Draw();
 
