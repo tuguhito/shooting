@@ -1,7 +1,6 @@
 #include "player.h"
 #include"DxLib.h"
 #include"KeyManager.h"
-#include"player.h"
 #include"StraightBullet.h"
 
 T_Location getNewLocation(T_Location newLocation);
@@ -35,19 +34,32 @@ void Player::Update()
 			break;
 		}
 		bullets[bulletCount]->Update();
+
+		if (bullets[bulletCount]->isDeath())
+		{
+			delete bullets[bulletCount];
+			bullets[bulletCount] = bullets[bulletCount + 1];
+			bullets[bulletCount + 1] = nullptr;
+
+			for (int i = bulletCount+1; i < 30; i++)
+			{
+				if (bullets[i+1]==nullptr)
+				{
+					break;
+				}
+				bullets[i] = bullets[i + 1];
+				bullets[i + 1] = nullptr;
+			}
+		}
 	}
 
 	if (KeyManager::OnClick(KEY_INPUT_SPACE))
 	{
 		int i;
-		for (i = 0; i < 30; i++)
-		{
-			if (bullets[i] == nullptr)
+			if (bulletCount<30&&bullets[bulletCount] == nullptr)
 			{
-				break;
+				bullets[bulletCount] = new StraightBullet(GetLocation());
 			}
-		}
-		bullets[i] = new StraightBullet(GetLocation());
 	}
 }
 

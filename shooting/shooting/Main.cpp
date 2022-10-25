@@ -3,8 +3,7 @@
 #include"GameMain.h"
 
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-    LPSTR lpCmdLine, int nCmdShow) {
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
     //タイトルを test に変更
     SetMainWindowText("シューティング");

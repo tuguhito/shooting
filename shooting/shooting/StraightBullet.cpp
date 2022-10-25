@@ -12,9 +12,22 @@ void StraightBullet::Update()
 	T_Location newLocation = GetLocation();
 	newLocation.y -= speed.y;
 	SetLocation(newLocation);
+
+	
 }
 
 void StraightBullet::Draw()
 {
 	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 0));
+}
+
+bool StraightBullet::isDeath()
+{
+	float y = GetLocation().y + GetRadius();
+	if (y<=0)
+	{
+		return true;
+	}
+
+	return false;
 }
