@@ -16,7 +16,7 @@ public:
 	SphereCollider(T_Location location, float radius);
 
 public:
-	bool HitSphere(SphereCollider s);//　コライダー同士のヒット判定
+	bool HitSphere(SphereCollider* s);//　コライダー同士のヒット判定
 	T_Location GetLocation();
 	void SetLocation(T_Location value);
 	float GetRadius();

@@ -1,10 +1,12 @@
 #pragma once
 #include"SceneManager.h"
 #include "player.h"
+#include"Enemy.h"
 class GameMain : public AbstractScene
 {
 private:
 	Player* player;
+	Enemy** enemy;
 
 public:
 	GameMain()
@@ -16,6 +18,14 @@ public:
 		float radius=10.f;
 
 		player = new Player(location, radius);
+
+		enemy = new Enemy*[10];
+
+		for (int i = 0; i < 10; i++)
+		{
+			enemy[i] = nullptr;
+		}
+		enemy[0] = new Enemy(T_Location{300, 0}, 20);
 
 	}
 

@@ -38,22 +38,22 @@ void Player::Update()
 		if (bullets[bulletCount]->isDeath())
 		{
 			delete bullets[bulletCount];
-			bullets[bulletCount] = bullets[bulletCount + 1];
-			bullets[bulletCount + 1] = nullptr;
+			bullets[bulletCount] = nullptr;
 
-			for (int i = bulletCount+1; i < 30; i++)
+			for (int i = (bulletCount+1); i < 30; i++)
 			{
-				if (bullets[i+1]==nullptr)
+				if (bullets[i]==nullptr)
 				{
 					break;
 				}
-				bullets[i] = bullets[i + 1];
-				bullets[i + 1] = nullptr;
+				bullets[i - 1] = bullets[i];
+				bullets[i] = nullptr;
 			}
+			bulletCount--;
 		}
 	}
 
-	if (KeyManager::OnClick(KEY_INPUT_SPACE))
+	if (KeyManager::OnClicked(KEY_INPUT_SPACE))
 	{
 		int i;
 			if (bulletCount<30&&bullets[bulletCount] == nullptr)
