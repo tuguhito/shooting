@@ -3,7 +3,7 @@
 
 enum class E_ITEM_TYPE
 {
-	NOMAL = 0
+	HP_Potion = 0
 };
 
 class ItemBase:public SphereCollider

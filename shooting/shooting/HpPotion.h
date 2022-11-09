@@ -11,5 +11,6 @@ public:
 public:
 	virtual void Update();
 	virtual void Draw();
+	int GetHealPower();
 };
 

@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="BulletBase.cpp" />
     <ClCompile Include="CharaBase.cpp" />
+    <ClCompile Include="EneBullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="HpPotion.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="AbstractScene.h" />
     <ClInclude Include="BulletBase.h" />
     <ClInclude Include="CharaBase.h" />
+    <ClInclude Include="EneBullet.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="HpPotion.h" />

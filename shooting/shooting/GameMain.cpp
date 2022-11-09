@@ -49,6 +49,7 @@ AbstractScene* GameMain::Update()
 						if (items[i] == nullptr)
 						{
 							items[i] = new HpPotion(enemy[EnemyCount]->GetLocation());
+							break;
 						}
 					}
 					//エネミーを消した時、プレイヤーのスコアに、エネミーのポイントを加算する
@@ -84,6 +85,7 @@ AbstractScene* GameMain::Update()
 		}
 		if (player->HitSphere(items[itemCount]))
 		{
+			player->Hit(items[itemCount]);
 			delete items[itemCount];
 			items[itemCount] = nullptr;
 			for (int i = itemCount+1; i < 10; i++)

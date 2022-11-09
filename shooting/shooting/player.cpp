@@ -2,6 +2,7 @@
 #include"DxLib.h"
 #include"KeyManager.h"
 #include"StraightBullet.h"
+#include"HpPotion.h"
 
 T_Location getNewLocation(T_Location newLocation);
 //newLocation.x = GetLocation().x;
@@ -65,6 +66,13 @@ void Player::Update()
 
 void Player::Draw() 
 {
+#define DEBUG_MODE //デバッグプログラム　コメントアウトすればデバッグ作業は行われない
+
+#ifdef DEBUG_MODE
+	DrawFormatString(10, 10, GetColor(255, 255, 255), "Life=%d", this->life);
+#endif 
+
+
 	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(0, 255, 0));
 
 	int bulletCount;
@@ -97,6 +105,26 @@ void Player::Hit(int bulletsCount)
 		}
 		bullets[i - 1] = bullets[i];
 		bullets[i] = nullptr;
+	}
+}
+
+void Player::Hit(ItemBase* item)
+{
+	E_ITEM_TYPE type = item->GetType();
+	switch (type)
+	{
+	case E_ITEM_TYPE::HP_Potion:
+	{
+		HpPotion* potion = dynamic_cast<HpPotion*>(item);
+		if (potion == nullptr)
+		{
+			throw - 1;
+		}
+		this->life += potion->GetHealPower();
+		break;
+	}
+	default:
+		break;
 	}
 }
 
