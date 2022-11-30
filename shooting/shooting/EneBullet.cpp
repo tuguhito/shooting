@@ -11,7 +11,7 @@ EneBullet::EneBullet(T_Location location) :BulletBase(location, 5.f, 1, T_Locati
 void EneBullet::Update()
 {
 	T_Location newLocation = GetLocation();
-	newLocation.y -= speed.y;
+	newLocation.y += speed.y;
 	SetLocation(newLocation);
 
 
@@ -19,7 +19,6 @@ void EneBullet::Update()
 
 void EneBullet::Draw()
 {
-	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 0));
 	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 255, 0));
 }
 

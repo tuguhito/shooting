@@ -23,6 +23,7 @@ AbstractScene* GameMain::Update()
 		items[i]->Update();
 	}
 	BulletBase** bullets = player->GetBullets();
+	//EneBullet** bullets=enemy->
 	for (int bulletCount = 0; bulletCount < 30; bulletCount++)
 	{
 		if (bullets[bulletCount] == nullptr)
@@ -35,51 +36,58 @@ AbstractScene* GameMain::Update()
 			{
 				break;
 			}
-			if (bullets[bulletCount]->HitSphere(enemy[EnemyCount]))
+			for (int PlayerCount = 0; PlayerCount < 10; PlayerCount++)
 			{
-				enemy[EnemyCount]->Hit(bullets[bulletCount]->GetDamage());
-				player->Hit(bulletCount);//弾の削除
-				bullets = player->GetBullets();
-				bulletCount--;
-				//エネミーのHPがゼロ以下であれば、エネミーを消す
-				if (enemy[EnemyCount]->HpCheck())
+				if (player[PlayerCount] == nullptr)
 				{
-					for (int i = 0; i < 10; i++)
+					break;
+				}
+				if (bullets[bulletCount]->HitSphere(enemy[EnemyCount]))
+				{
+					enemy[EnemyCount]->Hit(bullets[bulletCount]->GetDamage());
+					player->Hit(bulletCount);//弾の削除
+					bullets = player->GetBullets();
+					bulletCount--;
+					//エネミーのHPがゼロ以下であれば、エネミーを消す
+					if (enemy[EnemyCount]->HpCheck())
 					{
-						if (items[i] == nullptr)
+						for (int i = 0; i < 10; i++)
 						{
-							items[i] = new HpPotion(enemy[EnemyCount]->GetLocation());
-							break;
+							if (items[i] == nullptr)
+							{
+								items[i] = new HpPotion(enemy[EnemyCount]->GetLocation());
+								break;
+							}
 						}
-					}
-					//エネミーを消した時、プレイヤーのスコアに、エネミーのポイントを加算する
-					player->addScore(enemy[EnemyCount]->GetPoint());//delete前に実行したいプログラムを打ち込む
+						//エネミーを消した時、プレイヤーのスコアに、エネミーのポイントを加算する
+						player->addScore(enemy[EnemyCount]->GetPoint());//delete前に実行したいプログラムを打ち込む
 
-					delete enemy[EnemyCount];
-					enemy[EnemyCount] = nullptr;
+						delete enemy[EnemyCount];
+						enemy[EnemyCount] = nullptr;
 
-					for (int i = (EnemyCount + 1); i < 10; i++)
-					{
-						if (enemy[i] == nullptr)
+						for (int i = (EnemyCount + 1); i < 10; i++)
 						{
-							break;
+							if (enemy[i] == nullptr)
+							{
+								break;
+							}
+							enemy[i - 1] = enemy[i];
+							enemy[i] = nullptr;
 						}
-						enemy[i - 1] = enemy[i];
-						enemy[i] = nullptr;
+
 					}
 
 				}
-
 			}
-			
 
-			}
-		
+
+		}
+
 	}
 
 	for (int itemCount = 0; itemCount < 10; itemCount++)
 	{
-		if (items[itemCount]==nullptr)
+		if (items[itemCount] == nullptr)
 		{
 			break;
 		}
@@ -88,9 +96,9 @@ AbstractScene* GameMain::Update()
 			player->Hit(items[itemCount]);
 			delete items[itemCount];
 			items[itemCount] = nullptr;
-			for (int i = itemCount+1; i < 10; i++)
+			for (int i = itemCount + 1; i < 10; i++)
 			{
-				if (items[i]==nullptr)
+				if (items[i] == nullptr)
 				{
 					break;
 				}
@@ -99,7 +107,6 @@ AbstractScene* GameMain::Update()
 			}
 		}
 	}
-
 	return this;
 }
 

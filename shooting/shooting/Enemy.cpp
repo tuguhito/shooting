@@ -1,19 +1,22 @@
 #include"DxLib.h"
 #include"Enemy.h"
-#include"EneBullet.h"
+#include"StraightBullet.h"
 
-Enemy::Enemy(T_Location location, float radius) :SphereCollider(location, radius)
+#define ATTACK_INTERVAL 60
+
+Enemy::Enemy(T_Location location, float radius) : SphereCollider(location, radius)
 {
 	hp = 10;
 	point = 10;
+	WaitCount = 0;
 	speed = T_Location{0,1};
 	//image‚Ì‰Šú‰» 
 	//speed‚Ì‰Šú‰»
 
-	enemy = new BulletBase * [30];
+	bullets = new BulletBase * [30];
 	for (int i = 0; i < 30; i++)
 	{
-		enemy[i] = nullptr;
+		bullets[i] = nullptr;
 	}
 }
 
@@ -24,46 +27,56 @@ void Enemy::Update()
 	newLocation.y += speed.y;
 	SetLocation(newLocation);
 
-	int Enemybullet;
-	for (Enemybullet = 0; Enemybullet < 30; Enemybullet++)
+	int bulletCount;
+	for (bulletCount = 0; bulletCount < 30; bulletCount++)
 	{
-		if (enemy[Enemybullet] == nullptr)
+		if (bullets[bulletCount] == nullptr)
 		{
 			break;
 		}
-		enemy[Enemybullet]->Update();
+		bullets[bulletCount]->Update();
 
-		if (enemy[Enemybullet]->isDeath())
+		if (bullets[bulletCount]->isDeath())
 		{
-			delete enemy[Enemybullet];
-			enemy[Enemybullet] = nullptr;
+			delete bullets[bulletCount];
+			bullets[bulletCount] = nullptr;
 
-			for (int i = (Enemybullet + 1); i < 30; i++)
+			for (int i = (bulletCount + 1); i < 30; i++)
 			{
-				if (enemy[i] == nullptr)
+				if (bullets[i] == nullptr)
 				{
 					break;
 				}
-				enemy[i - 1] = enemy[i];
-				enemy[i] = nullptr;
+				bullets[i - 1] = bullets[i];
+				bullets[i] = nullptr;
 			}
-			Enemybullet--;
+			bulletCount--;
+		}
+	}
+
+	WaitCount++;
+	if (ATTACK_INTERVAL <= WaitCount)
+	{
+		if (bulletCount < 30 && bullets[bulletCount] == nullptr)
+		{
+			WaitCount = 0;
+			bullets[bulletCount] = new StraightBullet(GetLocation(), T_Location{ 0,2 });
 		}
 	}
 }
 
 void Enemy::Draw()
 {
-	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(0, 10, 255));
-	//DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 255, 0));
-	int Enemybullet;
-	for (Enemybullet = 0; Enemybullet < 30; Enemybullet++)
+	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(0, 0, 255));
+
+	int bulletCount;
+	for (bulletCount = 0; bulletCount < 30; bulletCount++)
 	{
-		if (enemy[Enemybullet] == nullptr)
+		if (bullets[bulletCount] == nullptr)
 		{
 			break;
 		}
-		enemy[Enemybullet]->Draw();
+		bullets[bulletCount]->Draw();
 	}
 }
 

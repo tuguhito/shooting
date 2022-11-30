@@ -1,6 +1,10 @@
 #include"DxLib.h"
 #include"SceneManager.h"
 #include"GameMain.h"
+#include"common.h"
+//#define SCREEN_WIDTH
+//#define SCREEN_HEIGHT
+//#define SCREEN_COLOR_BIT_16
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
@@ -9,6 +13,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     SetMainWindowText("シューティング");
 
     ChangeWindowMode(TRUE);		// ウィンドウモードで起動
+
+    SetWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_COLOR_BIT_16);
 
     if (DxLib_Init() == -1) return -1;	// DXライブラリの初期化処理
 
