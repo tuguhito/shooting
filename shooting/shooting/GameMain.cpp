@@ -23,6 +23,7 @@ AbstractScene* GameMain::Update()
 		items[i]->Update();
 	}
 	BulletBase** bullets = player->GetBullets();
+	BulletBase** bullets = enemy->GetBullets();
 	//EneBullet** bullets=enemy->
 	for (int bulletCount = 0; bulletCount < 30; bulletCount++)
 	{
@@ -36,12 +37,6 @@ AbstractScene* GameMain::Update()
 			{
 				break;
 			}
-			for (int PlayerCount = 0; PlayerCount < 10; PlayerCount++)
-			{
-				if (player[PlayerCount] == nullptr)
-				{
-					break;
-				}
 				if (bullets[bulletCount]->HitSphere(enemy[EnemyCount]))
 				{
 					enemy[EnemyCount]->Hit(bullets[bulletCount]->GetDamage());
@@ -78,12 +73,44 @@ AbstractScene* GameMain::Update()
 					}
 
 				}
-			}
-
-
 		}
 
+		for (int playercount = 0; playercount < 10; playercount++)
+		{
+			if (player[playercount]==nullptr)
+			{
+
+			}
+			if (bullets[bulletCount]->HitSphere(player[playercount]))
+			{
+				player[playercount]->Hit(bullets[bulletCount]->GetDamage());
+				enemy->Hit(bulletCount);//弾の削除
+				bullets = enemy->GetBullets();
+				bulletCount--;
+				//エネミーのHPがゼロ以下であれば、エネミーを消す
+				if (player[playercount]->HpCheck())
+				{
+					delete player[playercount];
+					player[playercount] = nullptr;
+
+					for (int i = (playercount + 1); i < 10; i++)
+					{
+						if (player[i] == nullptr)
+						{
+							break;
+						}
+						player[i - 1] = player[i];
+						player[i] = nullptr;
+					}
+
+				}
+
+			}
+		}
+
+
 	}
+
 
 	for (int itemCount = 0; itemCount < 10; itemCount++)
 	{
