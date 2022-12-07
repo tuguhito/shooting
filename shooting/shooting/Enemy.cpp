@@ -41,15 +41,7 @@ void Enemy::Update()
 			delete bullets[bulletCount];
 			bullets[bulletCount] = nullptr;
 
-			for (int i = (bulletCount + 1); i < 30; i++)
-			{
-				if (bullets[i] == nullptr)
-				{
-					break;
-				}
-				bullets[i - 1] = bullets[i];
-				bullets[i] = nullptr;
-			}
+			DeleteBullet(bulletCount);
 			bulletCount--;
 		}
 	}
@@ -108,5 +100,19 @@ int Enemy::GetPoint()
 	return point;
 }
 
+void Enemy::DeleteBullet(int bulletCount)
+{
+	delete bullets[bulletCount];
+	bullets[bulletCount] = nullptr;
 
+	for (int i = (bulletCount + 1); i < 30; i++)
+	{
+		if (bullets[i] == nullptr)
+		{
+			break;
+		}
+		bullets[i - 1] = bullets[i];
+		bullets[i] = nullptr;
+	}
+}
 

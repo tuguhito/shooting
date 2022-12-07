@@ -54,7 +54,7 @@ void Player::Update()
 		}
 	}
 
-	if (KeyManager::OnClick(KEY_INPUT_SPACE))
+	if (KeyManager::OnClick(KEY_INPUT_SPACE))//spaceキーを押せば弾が出る
 	{
 		int i;
 			if (bulletCount<30&&bullets[bulletCount] == nullptr)
@@ -64,7 +64,7 @@ void Player::Update()
 	}
 }
 
-void Player::Draw() 
+void Player::Draw() //ここで自機を描画する画像を用意
 {
 #define DEBUG_MODE //デバッグプログラム　コメントアウトすればデバッグ作業は行われない
 
@@ -91,13 +91,19 @@ void Player::Hit()
 
 }
 
+void Player::Hit(BulletBase* bullet)
+{
+	int damage = bullet->GetDamage();
+	life -= damage;//ダメージが入る
+}
+
 void Player::Hit(int bulletsCount)
 {
 
-	delete bullets[bulletsCount];
+	delete bullets[bulletsCount];//敵に当たったら弾が消える
 	bullets[bulletsCount] = nullptr;
 
-	for (int i = (bulletsCount + 1); i < 30; i++)
+	for (int i = (bulletsCount + 1); i < 30; i++)//弾の最大数（発射数が30超えたら弾が出てこない）
 	{
 		if (bullets[i] == nullptr)
 		{
@@ -108,12 +114,12 @@ void Player::Hit(int bulletsCount)
 	}
 }
 
-void Player::Hit(ItemBase* item)
+void Player::Hit(ItemBase* item)//アイテム（回復アイテム）が出てくる
 {
 	E_ITEM_TYPE type = item->GetType();
 	switch (type)
 	{
-	case E_ITEM_TYPE::HP_Potion:
+	case E_ITEM_TYPE::HP_Potion://敵を倒せば、回復アイテムが出てくる
 	{
 		HpPotion* potion = dynamic_cast<HpPotion*>(item);
 		if (potion == nullptr)
@@ -141,7 +147,7 @@ int Player::GetScore()
 
 void Player::addScore(int point)
 {
-	if (0 < point)
+	if (0 < point)//スコア加算用のプログラム
 	{
 		score += point;
 	}

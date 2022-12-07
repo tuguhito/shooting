@@ -1,5 +1,6 @@
 #pragma once
 #include "CharaBase.h"
+#include"BulletBase.h"
 
 class Player : public CharaBase, public SphereCollider
 {
@@ -13,7 +14,8 @@ public:
 public:
 	void Update() override;
 	void Draw() override;
-	void Hit() override;
+	void Hit()override;
+	void Hit(class BulletBase* bulletsCount);
 	void Hit(int BulletsCount);
 	void Hit(class ItemBase* item);
 	bool LifeCheck();

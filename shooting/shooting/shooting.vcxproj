@@ -163,6 +163,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
+    <ClCompile Include="SpinBullet.cpp" />
     <ClCompile Include="StraightBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +181,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SphereCollider.h" />
+    <ClInclude Include="SpinBullet.h" />
     <ClInclude Include="StraightBullet.h" />
   </ItemGroup>
   <ItemGroup>

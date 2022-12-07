@@ -18,6 +18,7 @@ public:
 	void Hit(int damage);
 	bool HpCheck();
 	int GetPoint();
+	void DeleteBullet(int bulletCount);//“G‚Ì’e‚ğíœ
 };
 
 
