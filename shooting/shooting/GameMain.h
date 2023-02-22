@@ -9,6 +9,9 @@ private:
 	Player* player;
 	Enemy** enemy;
 	ItemBase** items;
+	int hp;
+	int life;
+	int i;
 
 public:
 	GameMain()

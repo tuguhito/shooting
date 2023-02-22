@@ -1,12 +1,10 @@
 #pragma once
 #include"BulletBase.h"
-class StraightBullet :public BulletBase
+class SpinBullet :public BulletBase
 {
-private:
-	int image;
 
 public:
-	StraightBullet(T_Location location, T_Location speed);
+	SpinBullet(T_Location location, float speed, int degAngle);
 
 public:
 	virtual void Update() override;

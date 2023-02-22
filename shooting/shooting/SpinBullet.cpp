@@ -1,53 +1,57 @@
 #include "SpinBullet.h"
 #include"DxLib.h"
-#include"common.h"
+#define _USE_MATH_DEFINES
+#include<math.h>
 
-StraightBullet::StraightBullet(T_Location location, T_Location speed) :BulletBase(location, 5.f, 1, speed)
+SpinBullet::SpinBullet(T_Location location, float speed, int degAngle) :BulletBase(location, 5.f, 1, T_Location{1,1})
 {
-	image = 0;
+	int deg = degAngle % 360;
+	double rad = (M_PI / 180) * deg;
+	float x = (abs(deg) == 90 || abs(deg) == 270) ? 0 : cos(rad);
+	float y = sin(rad);
+
+	this->speed = T_Location{ (speed * x),(speed * y) };
 }
 
 
-void StraightBullet::Update()
+void SpinBullet::Update()
 {
 	T_Location newLocation = GetLocation();
 	newLocation.y += speed.y;
 	newLocation.x -= speed.x;
+	/*radius = angle * 3.14f / 180.0f;*/
+	/*float add_x = cos(radius) * length;
+	float add_y = sin(radius) * length;*/
 	SetLocation(newLocation);
 }
 
-void StraightBullet::Draw()
+void SpinBullet::Draw()
 {
-	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 0));
+	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(0, 0, 255));
 }
 
-bool StraightBullet::isDeath()
+bool SpinBullet::isDeath()
 {
-	float y = GetLocation().y + GetRadius();
-	if (y <= 0)
+	bool ret = ((GetLocation().y + GetRadius()) <= 0);
+	if (ret)
 	{
-		return true;
+		return ret;
 	}
 
-	y = GetLocation().y - GetRadius();
-	if (SCREEN_HEIGHT <= y)
+	ret = (SCREEN_HEIGHT <= (GetLocation().y - GetRadius()));
+	if (ret)
 	{
-		return true;
+		return ret;
 	}
 
-	float x = GetLocation().y + GetRadius();
-	if (x <= 0)
+	ret = ((GetLocation().x + GetRadius()) <= 0);
+	if (ret)
 	{
-		return true;
+		return ret;
 	}
 
-	x = GetLocation().y - GetRadius();
-	if (SCREEN_WIDTH <= x)
-	{
-		return true;
-	}
-
-	return false;
+	ret = (SCREEN_WIDTH <= (GetLocation().x - GetRadius()));
+	return ret;
 }
 
 

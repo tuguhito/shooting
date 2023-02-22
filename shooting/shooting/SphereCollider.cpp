@@ -33,12 +33,12 @@ bool SphereCollider::HitSphere(SphereCollider* s)
 	return ret;
 }
 
-float SphereCollider::GetRadius()
+float SphereCollider::GetRadius() const
 {
 	return radius;
 }
 
-T_Location SphereCollider::GetLocation()
+T_Location SphereCollider::GetLocation() const
 {
 	return location;
 }

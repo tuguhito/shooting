@@ -1,11 +1,14 @@
-#include"DxLib.h"
-#include"GameMain.h"
-#include"HpPotion.h"
+#include "DxLib.h"
+#include "GameMain.h"
+#include "HpPotion.h"
+#include "Enemy.h"
+#include "gameclear.h"
+#include "gameover.h"
 
 AbstractScene* GameMain::Update()
 {
 	player->Update();//自分自身のポインタ
-	for (int i = 0; i < 10; i++)
+	for (i = 0; i < 10; i++)
 	{
 		if (enemy[i] == nullptr)
 		{
@@ -36,6 +39,7 @@ AbstractScene* GameMain::Update()
 			if (enemy[EnemyCount] == nullptr)
 			{
 				break;
+				
 			}
 			if (bullets[bulletCount]->HitSphere(enemy[EnemyCount]))
 			{
@@ -59,6 +63,13 @@ AbstractScene* GameMain::Update()
 
 					delete enemy[EnemyCount];//敵が消える
 					enemy[EnemyCount] = nullptr;
+
+					if (hp == 0)
+					{
+						return new gameclear();
+					}
+
+					
 
 					for (int i = (EnemyCount + 1); i < 10; i++)
 					{
@@ -84,7 +95,7 @@ AbstractScene* GameMain::Update()
 			break;
 		}
 		BulletBase** enemyBullet = enemy[Enemycount]->GetBullets();
-
+		
 		for (int bulletsCount = 0; bulletsCount < 30; bulletsCount++)//敵の弾（多分）
 		{
 			if (enemyBullet[bulletsCount] == nullptr)
@@ -99,9 +110,13 @@ AbstractScene* GameMain::Update()
 				enemy[Enemycount]->DeleteBullet(bulletsCount);
 				bulletsCount--;
 			}
+			if (player->LifeCheck())
+			{
+				return new gameover();
+			}
 		}
 	}
-
+	
 
 	for (int itemCount = 0; itemCount < 10; itemCount++)//アイテム（回復アイテムのfor文（敵を倒したら出てくる））
 	{
@@ -125,6 +140,8 @@ AbstractScene* GameMain::Update()
 			}
 		}
 	}
+	
+	
 	return this;
 }
 

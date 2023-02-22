@@ -2,6 +2,7 @@
 #include"SceneManager.h"
 #include"GameMain.h"
 #include"common.h"
+#include "Title.h"
 //#define SCREEN_WIDTH
 //#define SCREEN_HEIGHT
 //#define SCREEN_COLOR_BIT_16
@@ -23,7 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     SetFontSize(20);		// 文字サイズを設定
 
-    SceneManager sceneMng(new GameMain());
+    SceneManager sceneMng(new Title());
 
     //ゲームループ
     while (ProcessMessage() == 0 && sceneMng.Update() != nullptr) {

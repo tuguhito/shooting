@@ -6,7 +6,7 @@ private:
 	int image;
 
 public:
-	StraightBullet(T_Location location, T_Location speed);
+	StraightBullet(T_Location location);
 
 public:
 	virtual void Update() override;

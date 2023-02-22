@@ -1,10 +1,5 @@
 #pragma once
-
-struct T_Location
-{
-	float x;
-	float y;
-};
+#include"common.h"
 
 class SphereCollider
 {
@@ -17,8 +12,8 @@ public:
 
 public:
 	bool HitSphere(SphereCollider* s);//　コライダー同士のヒット判定
-	T_Location GetLocation();
+	T_Location GetLocation() const;
 	void SetLocation(T_Location value);
-	float GetRadius();
+	float GetRadius() const;
 
 };

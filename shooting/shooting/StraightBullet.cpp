@@ -2,7 +2,7 @@
 #include"DxLib.h"
 #include"common.h"
 
-StraightBullet::StraightBullet(T_Location location, T_Location speed) :BulletBase(location, 5.f, 1, speed)
+StraightBullet::StraightBullet(T_Location location) :BulletBase(location, 5.f, 1, T_Location{0,5})
 {
 	image = 0;
 }
@@ -11,7 +11,7 @@ StraightBullet::StraightBullet(T_Location location, T_Location speed) :BulletBas
 void StraightBullet::Update()
 {
 	T_Location newLocation = GetLocation();
-	newLocation.y += speed.y;
+	newLocation.y -= speed.y;
 	SetLocation(newLocation);
 
 	

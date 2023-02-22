@@ -59,7 +59,7 @@ void Player::Update()
 		int i;
 			if (bulletCount<30&&bullets[bulletCount] == nullptr)
 			{
-				bullets[bulletCount] = new StraightBullet(GetLocation(), T_Location{0,-2});
+				bullets[bulletCount] = new StraightBullet(GetLocation());
 			}
 	}
 }

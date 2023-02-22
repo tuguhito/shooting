@@ -155,7 +155,11 @@
     <ClCompile Include="CharaBase.cpp" />
     <ClCompile Include="EneBullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Enemy1.cpp" />
+    <ClCompile Include="EnemyStraightBullet.cpp" />
+    <ClCompile Include="gameclear.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="gameover.cpp" />
     <ClCompile Include="HpPotion.cpp" />
     <ClCompile Include="ItemBase.cpp" />
     <ClCompile Include="KeyManager.cpp" />
@@ -165,6 +169,7 @@
     <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="SpinBullet.cpp" />
     <ClCompile Include="StraightBullet.cpp" />
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
@@ -173,7 +178,11 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="EneBullet.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Enemy1.h" />
+    <ClInclude Include="EnemyStraightBullet.h" />
+    <ClInclude Include="gameclear.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="gameover.h" />
     <ClInclude Include="HpPotion.h" />
     <ClInclude Include="ItemBase.h" />
     <ClInclude Include="KeyManager.h" />
@@ -183,6 +192,7 @@
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="SpinBullet.h" />
     <ClInclude Include="StraightBullet.h" />
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="shooting.rc" />
