@@ -31,7 +31,7 @@ void Enemy::inputCSV()
 				&moveInfo[i].waitFrameTime, 
 				&moveInfo[i].attackPattern );
 		}
-		return;
+		//return;
 	}
 	fclose(fp);   //ƒtƒ@ƒCƒ‹‚ð•Â‚¶‚é
 }
@@ -124,7 +124,7 @@ void Enemy::Update()
 
 void Enemy::Draw()
 {
-	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(0, 0, 255));
+	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(0, 255, 255));
 	DrawFormatString(10, 30, GetColor(255, 255, 255), "hp=%d", this->hp);
 
 	int bulletCount;
